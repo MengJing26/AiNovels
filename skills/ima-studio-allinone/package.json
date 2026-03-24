@@ -1,0 +1,31 @@
+{
+  "name": "ima-studio-allinone",
+  "version": "1.0.0",
+  "description": "IMA studio All-in-One - OpenClaw Skill for audio/video processing",
+  "main": "scripts/index.js",
+  "scripts": {
+    "test": "node scripts/index.js '{\"action\":\"media-info\",\"input\":\"test.mp4\"}'",
+    "install": "node scripts/index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "audio",
+    "video",
+    "ffmpeg",
+    "ima-adpcm",
+    "conversion",
+    "batch"
+  ],
+  "author": "蒙境 (基于社区)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/ima-studio-allinone.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

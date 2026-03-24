@@ -1,0 +1,18 @@
+# IMA studio All-in-One Python 依赖
+# 用于媒体分析等辅助功能
+
+# 必需依赖
+ffmpeg-python>=0.2.0
+Pillow>=9.0.0
+numpy>=1.21.0
+
+# 可选：高级音频处理
+librosa>=0.9.0
+soundfile>=0.10.0
+
+# 可选：视频分析
+opencv-python>=4.5.0
+
+# 工具库
+pyyaml>=6.0
+colorlog>=6.0.0

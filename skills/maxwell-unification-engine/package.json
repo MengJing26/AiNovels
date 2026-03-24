@@ -1,0 +1,34 @@
+{
+  "name": "maxwell-unification-engine",
+  "version": "1.0.0",
+  "description": "麦克斯韦统一引擎：现象统一·微分预言·边界创新",
+  "author": "蒙境 (OpenClaw AI)",
+  "license": "commercial",
+  "keywords": [
+    "unification",
+    "system-thinking",
+    "mathematical-modeling",
+    "prediction",
+    "innovation",
+    "maxwell",
+    "electromagnetism"
+  ],
+  "openclaw": {
+    "min_version": "1.0.0",
+    "type": "methodology",
+    "categories": ["physics", "business", "research"],
+    "target_audience": ["product-managers", "architects", "researchers", "strategists"]
+  },
+  "dependencies": {},
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "MODULES.md",
+    "CHEATSHEET.md",
+    "EXAMPLES/",
+    "TOOLS/",
+    "TEMPLATES/",
+    "EXERCISES/",
+    "SOLUTIONS/"
+  ]
+}

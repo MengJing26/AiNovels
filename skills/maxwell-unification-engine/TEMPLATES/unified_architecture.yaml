@@ -1,0 +1,53 @@
+# Unified Architecture Template
+
+# Step 1: List your services/systems and their variables
+services:
+  ServiceA:
+    - variable_1
+    - variable_2
+    - ...
+  ServiceB:
+    - variable_a
+    - variable_b
+    - ...
+
+# Step 2: Define core unified entity
+core_entity:
+  name: "UnifiedEntity"
+  attributes:
+    shared_variable_1:
+      type: string
+      description: ""
+    shared_variable_2:
+      type: integer
+    # ...
+
+# Step 3: Map services to views (constraints)
+views:
+  ServiceA:
+    core_entity_ref: true
+    additional_fields: []
+    filter: "type = 'service_a_type'"
+  ServiceB:
+    core_entity_ref: true
+    additional_fields: ["extra_field"]
+    filter: "metadata.service = 'b'"
+
+# Step 4: Predictions
+predictions:
+  - description: "After unification, data inconsistency will drop from X% to <2%"
+    metric: "data_inconsistency_rate"
+    baseline: 0.15
+    expected: 0.02
+    timeframe: "6 months"
+  - description: "Time to add new service will decrease by 80%"
+    metric: "new_service_implementation_weeks"
+    baseline: 8
+    expected: 1.5
+    timeframe: "upon first use"
+
+# Step 5: Benefits calculation
+benefits:
+  maintenance_cost_reduction: "60%"
+  time_to_market_reduction: "70%"
+  bug_reduction: "50%"
