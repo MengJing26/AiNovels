@@ -1,11 +1,11 @@
 // AI Skills Marketplace Data - UPDATED
-// 更新时间: 2026/3/24 00:00:00
-// 新增: churchill-crisis-leadership, euclidean-axiomatic-system, galileo-experimental-method, henry-ford-manufacturing, newton-scientific-revolution, ren-zhengfei-huawei-methodology, shen-kuo-empirical-science, watt-industrial-revolution
-// 总数: 46个Skill
+// 更新时间: 2026/3/25 00:00:00
+// 总数: 71个Skill (完整数据)
+// 新增: 25个Skill (从alexander到varro)
 
 const skillsData = {
-  "generated": "2026-03-24T00:00:00.000Z",
-  "total": 46,
+  "generated": "2026-03-25T00:00:00.000Z",
+  "total": 71,
   "averageRating": "4.65",
   "skills": [
     {
@@ -1513,6 +1513,857 @@ const skillsData = {
       ],
       "uniqueValue": "增量创新方法论，制造业升级刚需，工业革命思维",
       "commercialPotential": "¥31.5M+/年"
+    },
+    {
+      "id": "alexander-lightning-warfare-empire-network",
+      "name": "亚历山大闪电战与帝国网络引擎",
+      "nameEn": "Alexander Lightning Warfare & Empire Network",
+      "author": "亚历山大大帝",
+      "authorEn": "Alexander the Great",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "leadership",
+        "strategy",
+        "expansion",
+        "military",
+        "empire"
+      ],
+      "rating": 4.8,
+      "pricing": {
+        "personal": 199,
+        "professional": 599,
+        "enterprise": 2999,
+        "premium": 9999
+      },
+      "file": "skills/alexander-lightning-warfare-empire-network/SKILL.md",
+      "sizeKB": 12.0,
+      "description": "闪电征服 × 城市网络 × 文化融合 × 领导力神话 = 帝国扩张操作系统",
+      "coreFormula": "EmpireExpansion = (LightningWarfare × CityNetwork) + (CulturalFusion × LeadershipMyth)",
+      "scenarios": [
+        "快速市场扩张",
+        "跨国并购",
+        "文化整合",
+        "危机领导"
+      ],
+      "uniqueValue": "从未败绩的征服者方法论 + 70+城市建设经验 + 文化融合策略",
+      "commercialPotential": "¥25-50M/年"
+    },
+    {
+      "id": "augustus-empire-creation-long-term-stability",
+      "name": "奥古斯都帝国创建与长期稳定引擎",
+      "nameEn": "Augustus Empire Creation & Long-term Stability",
+      "author": "奥古斯都",
+      "authorEn": "Augustus",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "leadership",
+        "empire",
+        "stability",
+        "governance"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/augustus-empire-creation-long-term-stability/SKILL.md",
+      "sizeKB": 11.5,
+      "description": "权力重构 × 制度设计 × 长期规划 = 罗马帝国稳定基石",
+      "coreFormula": "Stability = (PowerRestructuring × InstitutionalDesign) × LongTermPlanning",
+      "scenarios": [
+        "企业稳定",
+        "制度设计",
+        "长期规划",
+        "权力交接"
+      ],
+      "uniqueValue": "罗马帝国黄金时代缔造者 + 40年稳定统治经验",
+      "commercialPotential": "¥20-40M/年"
+    },
+    {
+      "id": "cato-elder-pragmatic-management",
+      "name": "老加图务实管理引擎",
+      "nameEn": "Cato the Elder Pragmatic Management",
+      "author": "老加图",
+      "authorEn": "Cato the Elder",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "management",
+        "pragmatism",
+        "cost-control",
+        "agriculture"
+      ],
+      "rating": 4.4,
+      "pricing": {
+        "personal": 99,
+        "professional": 299,
+        "enterprise": 999,
+        "premium": 3999
+      },
+      "file": "skills/cato-elder-pragmatic-management/SKILL.md",
+      "sizeKB": 9.1,
+      "description": "简单主义 × 成本控制 × 实用至上 = 务实管理操作系统",
+      "coreFormula": "PragmaticManagement = (Simplicity × CostControl) + PracticalFirst",
+      "scenarios": [
+        "成本优化",
+        "务实决策",
+        "资源受限管理",
+        "农业管理"
+      ],
+      "uniqueValue": "古罗马务实主义代表 + 成本控制专家",
+      "commercialPotential": "¥5-15M/年"
+    },
+    {
+      "id": "cicero-rhetorical-leadership",
+      "name": "西塞罗修辞领导力引擎",
+      "nameEn": "Cicero Rhetorical Leadership",
+      "author": "西塞罗",
+      "authorEn": "Cicero",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "leadership",
+        "rhetoric",
+        "communication",
+        "politics"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 129,
+        "professional": 399,
+        "enterprise": 1499,
+        "premium": 4999
+      },
+      "file": "skills/cicero-rhetorical-leadership/SKILL.md",
+      "sizeKB": 10.8,
+      "description": "修辞艺术 × 公众演讲 × 政治智慧 = 说服力领导系统",
+      "coreFormula": "Leadership = (Rhetoric × PublicSpeaking) + PoliticalWisdom",
+      "scenarios": [
+        "公众演讲",
+        "说服沟通",
+        "政治领导",
+        "危机公关"
+      ],
+      "uniqueValue": "罗马最伟大的演说家 + 修辞学大师",
+      "commercialPotential": "¥8-20M/年"
+    },
+    {
+      "id": "cleisthenes-athenian-democracy-operating-system-ostracism",
+      "name": "克里斯提尼雅典民主操作系统",
+      "nameEn": "Cleisthenes Athenian Democracy Operating System",
+      "author": "克里斯提尼",
+      "authorEn": "Cleisthenes",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "democracy",
+        "governance",
+        "institutional-design",
+        "politics"
+      ],
+      "rating": 4.5,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/cleisthenes-athenian-democracy-operating-system-ostracism/SKILL.md",
+      "sizeKB": 11.2,
+      "description": "民主制度 × 部落重组 × 陶片放逐 = 雅典民主操作系统",
+      "coreFormula": "Democracy = (InstitutionalDesign × TribalRestructuring) + OstracismMechanism",
+      "scenarios": [
+        "组织民主化",
+        "制度设计",
+        "权力制衡",
+        "危机处理"
+      ],
+      "uniqueValue": "雅典民主之父 + 制度创新大师",
+      "commercialPotential": "¥10-25M/年"
+    },
+    {
+      "id": "cyrus-the-great-empire-creation-human-rights",
+      "name": "居鲁士大帝帝国创建与人权引擎",
+      "nameEn": "Cyrus the Great Empire Creation & Human Rights",
+      "author": "居鲁士大帝",
+      "authorEn": "Cyrus the Great",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "leadership",
+        "empire",
+        "human-rights",
+        "tolerance"
+      ],
+      "rating": 4.8,
+      "pricing": {
+        "personal": 179,
+        "professional": 549,
+        "enterprise": 2499,
+        "premium": 8999
+      },
+      "file": "skills/cyrus-the-great-empire-creation-human-rights/SKILL.md",
+      "sizeKB": 12.5,
+      "description": "宽容政策 × 人权宣言 × 帝国构建 = 波斯帝国操作系统",
+      "coreFormula": "Empire = (TolerancePolicy × HumanRights) + ImperialConstruction",
+      "scenarios": [
+        "多元文化管理",
+        "人权保护",
+        "帝国扩张",
+        "文化包容"
+      ],
+      "uniqueValue": "人权宣言首创者 + 波斯帝国缔造者",
+      "commercialPotential": "¥15-35M/年"
+    },
+    {
+      "id": "cyrus-toleration-human-rights-empire",
+      "name": "居鲁士宽容与人权帝国引擎",
+      "nameEn": "Cyrus Toleration Human Rights Empire",
+      "author": "居鲁士大帝",
+      "authorEn": "Cyrus the Great",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "tolerance",
+        "human-rights",
+        "empire",
+        "leadership"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/cyrus-toleration-human-rights-empire/SKILL.md",
+      "sizeKB": 11.0,
+      "description": "宽容 × 人权 × 帝国 = 多元文化操作系统",
+      "coreFormula": "Tolerance = (Respect × Freedom) + CulturalIntegration",
+      "scenarios": [
+        "多元文化管理",
+        "包容性领导",
+        "文化整合",
+        "人权保护"
+      ],
+      "uniqueValue": "历史上第一个宽容政策实施者",
+      "commercialPotential": "¥12-30M/年"
+    },
+    {
+      "id": "darius-i-empire-reorganization-standardization",
+      "name": "大流士一世帝国重组与标准化引擎",
+      "nameEn": "Darius I Empire Reorganization & Standardization",
+      "author": "大流士一世",
+      "authorEn": "Darius I",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "reorganization",
+        "standardization",
+        "empire",
+        "governance"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 159,
+        "professional": 479,
+        "enterprise": 2199,
+        "premium": 7999
+      },
+      "file": "skills/darius-i-empire-reorganization-standardization/SKILL.md",
+      "sizeKB": 11.8,
+      "description": "帝国重组 × 制度标准化 × 行政改革 = 波斯帝国升级系统",
+      "coreFormula": "Reorganization = (Standardization × AdministrativeReform) × SystematicUpgrade",
+      "scenarios": [
+        "企业重组",
+        "标准化管理",
+        "行政改革",
+        "系统升级"
+      ],
+      "uniqueValue": "波斯帝国标准化改革者",
+      "commercialPotential": "¥10-25M/年"
+    },
+    {
+      "id": "ford-assembly-line-mass-production-middle-class-creation",
+      "name": "福特流水线大规模生产与中产阶级创造引擎",
+      "nameEn": "Ford Assembly Line Mass Production & Middle Class Creation",
+      "author": "亨利·福特",
+      "authorEn": "Henry Ford",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "manufacturing",
+        "mass-production",
+        "middle-class",
+        "innovation"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/ford-assembly-line-mass-production-middle-class-creation/SKILL.md",
+      "sizeKB": 12.0,
+      "description": "流水线 × 大规模生产 × 高工资 = 中产阶级创造系统",
+      "coreFormula": "MassProduction = (AssemblyLine × Standardization) × HighWagePolicy",
+      "scenarios": [
+        "制造业升级",
+        "大规模生产",
+        "员工激励",
+        "市场扩张"
+      ],
+      "uniqueValue": "流水线发明者 + 5美元日工资创造者",
+      "commercialPotential": "¥15-35M/年"
+    },
+    {
+      "id": "hadrian-defense-integration-empire-consolidation",
+      "name": "哈德良防御整合与帝国巩固引擎",
+      "nameEn": "Hadrian Defense Integration & Empire Consolidation",
+      "author": "哈德良",
+      "authorEn": "Hadrian",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "defense",
+        "integration",
+        "consolidation",
+        "empire"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/hadrian-defense-integration-empire-consolidation/SKILL.md",
+      "sizeKB": 11.5,
+      "description": "防御建设 × 边境整合 × 帝国巩固 = 罗马帝国稳定系统",
+      "coreFormula": "Consolidation = (DefenseConstruction × BorderIntegration) + EmpireStability",
+      "scenarios": [
+        "企业防御",
+        "边界管理",
+        "稳定巩固",
+        "长期规划"
+      ],
+      "uniqueValue": "哈德良长城建造者 + 帝国巩固专家",
+      "commercialPotential": "¥12-30M/年"
+    },
+    {
+      "id": "hammurabi-code-infrastructure-trilevel-governance",
+      "name": "汉谟拉比法典基础设施三级治理引擎",
+      "nameEn": "Hammurabi Code Infrastructure Trilevel Governance",
+      "author": "汉谟拉比",
+      "authorEn": "Hammurabi",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "law",
+        "governance",
+        "infrastructure",
+        "justice"
+      ],
+      "rating": 4.5,
+      "pricing": {
+        "personal": 129,
+        "professional": 399,
+        "enterprise": 1799,
+        "premium": 5999
+      },
+      "file": "skills/hammurabi-code-infrastructure-trilevel-governance/SKILL.md",
+      "sizeKB": 10.5,
+      "description": "法典建设 × 基础设施 × 三级治理 = 巴比伦治理系统",
+      "coreFormula": "Governance = (CodeConstruction × Infrastructure) + TrilevelSystem",
+      "scenarios": [
+        "制度建设",
+        "基础设施",
+        "分级治理",
+        "司法公正"
+      ],
+      "uniqueValue": "第一部成文法典制定者",
+      "commercialPotential": "¥8-20M/年"
+    },
+    {
+      "id": "hammurabi-code-systematic-governance",
+      "name": "汉谟拉比法典系统化治理引擎",
+      "nameEn": "Hammurabi Code Systematic Governance",
+      "author": "汉谟拉比",
+      "authorEn": "Hammurabi",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "governance",
+        "systematic",
+        "law",
+        "justice"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 139,
+        "professional": 419,
+        "enterprise": 1899,
+        "premium": 6499
+      },
+      "file": "skills/hammurabi-code-systematic-governance/SKILL.md",
+      "sizeKB": 10.8,
+      "description": "系统化治理 × 法典建设 × 司法公正 = 巴比伦操作系统",
+      "coreFormula": "SystematicGovernance = (CodeSystem × JusticeMechanism) + AdministrativeEfficiency",
+      "scenarios": [
+        "系统化治理",
+        "制度建设",
+        "司法公正",
+        "行政管理"
+      ],
+      "uniqueValue": "系统化治理先驱",
+      "commercialPotential": "¥9-22M/年"
+    },
+    {
+      "id": "hanfei-law-method-authority-system",
+      "name": "韩非法治方法与权威系统引擎",
+      "nameEn": "Hanfei Law Method Authority System",
+      "author": "韩非",
+      "authorEn": "Hanfei",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "law",
+        "authority",
+        "governance",
+        "chinese-philosophy"
+      ],
+      "rating": 4.5,
+      "pricing": {
+        "personal": 119,
+        "professional": 359,
+        "enterprise": 1699,
+        "premium": 5999
+      },
+      "file": "skills/hanfei-law-method-authority-system/SKILL.md",
+      "sizeKB": 10.2,
+      "description": "法治方法 × 权威系统 × 法家思想 = 中国古代治理系统",
+      "coreFormula": "LegalGovernance = (LawMethod × AuthoritySystem) + LegalistPhilosophy",
+      "scenarios": [
+        "法治建设",
+        "权威管理",
+        "制度建设",
+        "治理优化"
+      ],
+      "uniqueValue": "法家思想集大成者",
+      "commercialPotential": "¥8-18M/年"
+    },
+    {
+      "id": "jp-morgan-financial-capital-crisis-art-patronage",
+      "name": "摩根金融资本危机与艺术赞助引擎",
+      "nameEn": "J.P. Morgan Financial Capital Crisis & Art Patronage",
+      "author": "J.P.摩根",
+      "authorEn": "J.P. Morgan",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "finance",
+        "capital",
+        "crisis",
+        "art-patronage"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 199,
+        "professional": 599,
+        "enterprise": 2999,
+        "premium": 9999
+      },
+      "file": "skills/jp-morgan-financial-capital-crisis-art-patronage/SKILL.md",
+      "sizeKB": 12.0,
+      "description": "金融资本 × 危机管理 × 艺术赞助 = 摩根财团操作系统",
+      "coreFormula": "FinancialEmpire = (Capital × CrisisManagement) + ArtPatronage",
+      "scenarios": [
+        "金融危机",
+        "资本运作",
+        "艺术投资",
+        "财团建设"
+      ],
+      "uniqueValue": "华尔街之父 + 艺术赞助家",
+      "commercialPotential": "¥20-50M/年"
+    },
+    {
+      "id": "kautilya-arthashastra-statecraft",
+      "name": "考底利耶《政事论》治国术引擎",
+      "nameEn": "Kautilya Arthashastra Statecraft",
+      "author": "考底利耶",
+      "authorEn": "Kautilya",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "statecraft",
+        "politics",
+        "economics",
+        "governance"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 169,
+        "professional": 509,
+        "enterprise": 2299,
+        "premium": 8999
+      },
+      "file": "skills/kautilya-arthashastra-statecraft/SKILL.md",
+      "sizeKB": 12.5,
+      "description": "治国术 × 政治经济学 × 外交策略 = 孔雀帝国操作系统",
+      "coreFormula": "Statecraft = (Politics × Economics) + DiplomaticStrategy",
+      "scenarios": [
+        "国家治理",
+        "政治策略",
+        "经济管理",
+        "外交政策"
+      ],
+      "uniqueValue": "《政事论》作者 + 孔雀帝国设计师",
+      "commercialPotential": "¥15-40M/年"
+    },
+    {
+      "id": "lucretius-epicurean-philosophy-poetry",
+      "name": "卢克莱修伊壁鸠鲁哲学与诗歌引擎",
+      "nameEn": "Lucretius Epicurean Philosophy Poetry",
+      "author": "卢克莱修",
+      "authorEn": "Lucretius",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "philosophy",
+        "poetry",
+        "epicureanism",
+        "atomism"
+      ],
+      "rating": 4.2,
+      "pricing": {
+        "personal": 99,
+        "professional": 299,
+        "enterprise": 999,
+        "premium": 3999
+      },
+      "file": "skills/lucretius-epicurean-philosophy-poetry/SKILL.md",
+      "sizeKB": 10.6,
+      "description": "伊壁鸠鲁哲学 × 原子论 × 诗歌传播 = 哲学思想传播系统",
+      "coreFormula": "PhilosophyDissemination = (Epicureanism × Atomism) + PoetryCommunication",
+      "scenarios": [
+        "哲学思考",
+        "思想传播",
+        "诗歌创作",
+        "死亡恐惧治疗"
+      ],
+      "uniqueValue": "《物性论》作者 + 哲学诗歌大师",
+      "commercialPotential": "¥5-15M/年"
+    },
+    {
+      "id": "marcus-aurelius-stoic-leadership",
+      "name": "马可·奥勒留斯多葛领导力引擎",
+      "nameEn": "Marcus Aurelius Stoic Leadership",
+      "author": "马可·奥勒留",
+      "authorEn": "Marcus Aurelius",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "stoicism",
+        "leadership",
+        "philosophy",
+        "emperor"
+      ],
+      "rating": 4.8,
+      "pricing": {
+        "personal": 179,
+        "professional": 549,
+        "enterprise": 2499,
+        "premium": 8999
+      },
+      "file": "skills/marcus-aurelius-stoic-leadership/SKILL.md",
+      "sizeKB": 8.8,
+      "description": "多葛哲学 × 皇帝领导 × 内心平静 = 哲学家王操作系统",
+      "coreFormula": "StoicLeadership = (InnerPeace × RationalControl) + ImperialResponsibility",
+      "scenarios": [
+        "危机领导",
+        "内心平静",
+        "理性决策",
+        "哲学实践"
+      ],
+      "uniqueValue": "哲学家皇帝 + 《沉思录》作者",
+      "commercialPotential": "¥18-45M/年"
+    },
+    {
+      "id": "marie-curie-radioactivity-experimental-spirit-public-legacy",
+      "name": "居里夫人放射性实验精神与公共遗产引擎",
+      "nameEn": "Marie Curie Radioactivity Experimental Spirit Public Legacy",
+      "author": "玛丽·居里",
+      "authorEn": "Marie Curie",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "science",
+        "radioactivity",
+        "experiment",
+        "legacy"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/marie-curie-radioactivity-experimental-spirit-public-legacy/SKILL.md",
+      "sizeKB": 11.0,
+      "description": "放射性研究 × 实验精神 × 公共遗产 = 科学贡献操作系统",
+      "coreFormula": "ScientificContribution = (Research × ExperimentalSpirit) + PublicLegacy",
+      "scenarios": [
+        "科学研究",
+        "实验设计",
+        "科学传播",
+        "遗产管理"
+      ],
+      "uniqueValue": "两次诺贝尔奖获得者 + 放射性发现者",
+      "commercialPotential": "¥15-35M/年"
+    },
+    {
+      "id": "pliny-elder-knowledge-engineering",
+      "name": "老普林尼知识工程引擎",
+      "nameEn": "Pliny the Elder Knowledge Engineering",
+      "author": "老普林尼",
+      "authorEn": "Pliny the Elder",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "knowledge",
+        "engineering",
+        "encyclopedia",
+        "observation"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 129,
+        "professional": 399,
+        "enterprise": 1799,
+        "premium": 5999
+      },
+      "file": "skills/pliny-elder-knowledge-engineering/SKILL.md",
+      "sizeKB": 9.4,
+      "description": "百科全书 × 知识工程 × 实证观察 = 古代知识系统",
+      "coreFormula": "KnowledgeEngineering = (Encyclopedia × SystematicCollection) + EmpiricalObservation",
+      "scenarios": [
+        "知识管理",
+        "百科全书建设",
+        "实证研究",
+        "跨学科整合"
+      ],
+      "uniqueValue": "《自然史》作者 + 百科全书式学者",
+      "commercialPotential": "¥8-20M/年"
+    },
+    {
+      "id": "pliny-younger-epistolary-knowledge-legacy",
+      "name": "小普林尼书信知识与遗产引擎",
+      "nameEn": "Pliny the Younger Epistolary Knowledge Legacy",
+      "author": "小普林尼",
+      "authorEn": "Pliny the Younger",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "epistolary",
+        "knowledge",
+        "legacy",
+        "administration"
+      ],
+      "rating": 4.4,
+      "pricing": {
+        "personal": 99,
+        "professional": 299,
+        "enterprise": 999,
+        "premium": 3999
+      },
+      "file": "skills/pliny-younger-epistolary-knowledge-legacy/SKILL.md",
+      "sizeKB": 10.4,
+      "description": "书信体 × 知识传承 × 行政智慧 = 历史记录系统",
+      "coreFormula": "KnowledgeLegacy = (EpistolaryWriting × HistoricalRecording) + AdministrativeWisdom",
+      "scenarios": [
+        "书信写作",
+        "历史记录",
+        "行政管理",
+        "知识传承"
+      ],
+      "uniqueValue": "书信体大师 + 历史记录者",
+      "commercialPotential": "¥5-15M/年"
+    },
+    {
+      "id": "rockefeller-standard-oil-monopoly-integration-cost-philanthropy-legacy",
+      "name": "洛克菲勒标准石油垄断整合成本与慈善遗产引擎",
+      "nameEn": "Rockefeller Standard Oil Monopoly Integration Cost Philanthropy Legacy",
+      "author": "约翰·洛克菲勒",
+      "authorEn": "John D. Rockefeller",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "monopoly",
+        "integration",
+        "cost-control",
+        "philanthropy"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 199,
+        "professional": 599,
+        "enterprise": 2999,
+        "premium": 9999
+      },
+      "file": "skills/rockefeller-standard-oil-monopoly-integration-cost-philanthropy-legacy/SKILL.md",
+      "sizeKB": 13.0,
+      "description": "垄断整合 × 成本控制 × 慈善遗产 = 石油帝国操作系统",
+      "coreFormula": "MonopolyEmpire = (Integration × CostControl) + PhilanthropyLegacy",
+      "scenarios": [
+        "垄断经营",
+        "成本控制",
+        "慈善事业",
+        "遗产管理"
+      ],
+      "uniqueValue": "标准石油创始人 + 现代慈善之父",
+      "commercialPotential": "¥25-60M/年"
+    },
+    {
+      "id": "seneca-stoic-practice-writing",
+      "name": "塞内卡斯多葛实践与写作引擎",
+      "nameEn": "Seneca Stoic Practice Writing",
+      "author": "塞内卡",
+      "authorEn": "Seneca",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "stoicism",
+        "practice",
+        "writing",
+        "philosophy"
+      ],
+      "rating": 4.8,
+      "pricing": {
+        "personal": 149,
+        "professional": 449,
+        "enterprise": 1999,
+        "premium": 6999
+      },
+      "file": "skills/seneca-stoic-practice-writing/SKILL.md",
+      "sizeKB": 10.1,
+      "description": "多葛实践 × 哲学写作 × 时间管理 = 实践哲学系统",
+      "coreFormula": "StoicPractice = (DailyRituals × PhilosophicalWriting) + TimeManagement",
+      "scenarios": [
+        "哲学实践",
+        "写作指导",
+        "时间管理",
+        "生活智慧"
+      ],
+      "uniqueValue": "斯多葛哲学家 + 书信体大师",
+      "commercialPotential": "¥12-30M/年"
+    },
+    {
+      "id": "solomon-wisdom-governance-temple-trade-empire",
+      "name": "所罗门智慧治理圣殿与贸易帝国引擎",
+      "nameEn": "Solomon Wisdom Governance Temple Trade Empire",
+      "author": "所罗门王",
+      "authorEn": "King Solomon",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "wisdom",
+        "governance",
+        "temple",
+        "trade"
+      ],
+      "rating": 4.7,
+      "pricing": {
+        "personal": 169,
+        "professional": 509,
+        "enterprise": 2299,
+        "premium": 8999
+      },
+      "file": "skills/solomon-wisdom-governance-temple-trade-empire/SKILL.md",
+      "sizeKB": 11.5,
+      "description": "智慧治理 × 圣殿建设 × 贸易帝国 = 以色列黄金时代",
+      "coreFormula": "WisdomEmpire = (Governance × TempleConstruction) + TradeNetwork",
+      "scenarios": [
+        "智慧决策",
+        "圣殿建设",
+        "贸易管理",
+        "外交策略"
+      ],
+      "uniqueValue": "智慧之王 + 圣殿建造者",
+      "commercialPotential": "¥15-40M/年"
+    },
+    {
+      "id": "solon-debt-cancel-law-public-democracy-procedures",
+      "name": "梭伦债务取消法律与公共民主程序引擎",
+      "nameEn": "Solon Debt Cancel Law Public Democracy Procedures",
+      "author": "梭伦",
+      "authorEn": "Solon",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "law",
+        "democracy",
+        "debt-cancel",
+        "reform"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 139,
+        "professional": 419,
+        "enterprise": 1899,
+        "premium": 6499
+      },
+      "file": "skills/solon-debt-cancel-law-public-democracy-procedures/SKILL.md",
+      "sizeKB": 10.8,
+      "description": "债务取消 × 法律改革 × 民主程序 = 雅典民主基础",
+      "coreFormula": "DemocraticReform = (DebtCancel × LegalReform) + PublicProcedures",
+      "scenarios": [
+        "债务危机",
+        "法律改革",
+        "民主程序",
+        "社会改革"
+      ],
+      "uniqueValue": "雅典民主改革者 + 债务取消先驱",
+      "commercialPotential": "¥10-25M/年"
+    },
+    {
+      "id": "varro-knowledge-classification-agriculture",
+      "name": "瓦罗知识分类与农业引擎",
+      "nameEn": "Varro Knowledge Classification Agriculture",
+      "author": "瓦罗",
+      "authorEn": "Varro",
+      "created": "2026-03-24",
+      "version": "1.0.0",
+      "tags": [
+        "knowledge",
+        "classification",
+        "agriculture",
+        "encyclopedia"
+      ],
+      "rating": 4.6,
+      "pricing": {
+        "personal": 119,
+        "professional": 359,
+        "enterprise": 1699,
+        "premium": 5999
+      },
+      "file": "skills/varro-knowledge-classification-agriculture/SKILL.md",
+      "sizeKB": 10.3,
+      "description": "知识分类 × 农业科学 × 系统化 = 古代知识系统",
+      "coreFormula": "KnowledgeSystem = (Classification × AgricultureScience) + SystematicOrganization",
+      "scenarios": [
+        "知识分类",
+        "农业管理",
+        "系统化组织",
+        "百科全书建设"
+      ],
+      "uniqueValue": "古代百科全书式学者 + 农业科学家",
+      "commercialPotential": "¥8-20M/年"
     }
   ]
 };

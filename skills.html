@@ -729,7 +729,7 @@
   </footer>
 
   <!-- 脚本 - 性能优化 -->
-  <script src="skills_data.js" defer></script>
+  <script src="skills_data.js"></script>
   <script>
     'use strict';
 
@@ -932,6 +932,7 @@
       grid.innerHTML = pageSkills.map((skill, idx) => renderSkillCard(skill, start + idx)).join('');
     }
 
+    // 解析商业潜力字符串并提取数值(单位:百万美元)
     // 渲染所有 Skill
     function renderSkills(filter = 'all', search = '') {
       try {
