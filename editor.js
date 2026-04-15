@@ -10,7 +10,8 @@
     const CONFIG = {
         STORAGE_KEY: 'aiclawbox_editor_data',
         BACKUP_KEY: 'aiclawbox_editor_backup',
-        MAX_BACKUP: 5
+        MAX_BACKUP: 5,
+        MAX_STORAGE_SIZE: 4 * 1024 * 1024 // 4MB 最大存储限制
     };
 
     // ==================== 状态管理 ====================
@@ -170,16 +171,91 @@
         // 保存到 LocalStorage
         save(data) {
             try {
+                // 检查存储空间
+                if (!this.checkStorageSpace()) {
+                    // 清理旧备份释放空间
+                    this.cleanupOldBackups();
+                }
+                
                 // 备份当前数据
                 this.backup();
                 
-                localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+                const dataStr = JSON.stringify(data);
+                
+                // 检查数据大小
+                if (dataStr.length > CONFIG.MAX_STORAGE_SIZE) {
+                    utils.showToast('数据过大，请减少内容！', 'warning');
+                    return false;
+                }
+                
+                localStorage.setItem(CONFIG.STORAGE_KEY, dataStr);
                 utils.showToast('保存成功！', 'success');
                 return true;
             } catch (e) {
                 console.error('保存失败:', e);
+                
+                // 如果是存储空间不足，尝试清理后重试
+                if (e.name === 'QuotaExceededError' || e.code === 22) {
+                    utils.showToast('存储空间不足，正在清理...', 'warning');
+                    this.cleanupOldBackups();
+                    
+                    try {
+                        // 重试保存
+                        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+                        utils.showToast('保存成功！', 'success');
+                        return true;
+                    } catch (retryError) {
+                        utils.showToast('存储空间已满，无法保存！', 'error');
+                        return false;
+                    }
+                }
+                
                 utils.showToast('保存失败！', 'error');
                 return false;
+            }
+        },
+
+        // 检查存储空间
+        checkStorageSpace() {
+            try {
+                const testKey = '__storage_test__';
+                const testValue = new Array(1024).join('x'); // 1KB测试数据
+                localStorage.setItem(testKey, testValue);
+                localStorage.removeItem(testKey);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        },
+
+        // 清理旧备份
+        cleanupOldBackups() {
+            try {
+                const backups = JSON.parse(localStorage.getItem(CONFIG.BACKUP_KEY) || '[]');
+                
+                // 只保留最近2个备份
+                if (backups.length > 2) {
+                    backups.splice(2);
+                    localStorage.setItem(CONFIG.BACKUP_KEY, JSON.stringify(backups));
+                    console.log('已清理旧备份，释放存储空间');
+                }
+                
+                // 清理所有本地图片缓存
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('img_')) {
+                        keysToRemove.push(key);
+                    }
+                }
+                
+                keysToRemove.forEach(key => localStorage.removeItem(key));
+                
+                if (keysToRemove.length > 0) {
+                    console.log('已清理', keysToRemove.length, '个图片缓存');
+                }
+            } catch (e) {
+                console.error('清理备份失败:', e);
             }
         },
 
@@ -214,13 +290,58 @@
                 localStorage.setItem(CONFIG.BACKUP_KEY, JSON.stringify(backups));
             } catch (e) {
                 console.error('备份失败:', e);
+                // 如果备份失败，尝试清理空间
+                this.cleanupOldBackups();
             }
+        },
+
+        // 获取存储使用情况
+        getStorageInfo() {
+            let totalSize = 0;
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                totalSize += (key.length + value.length) * 2; // UTF-16编码
+            }
+            
+            return {
+                used: totalSize,
+                usedMB: (totalSize / 1024 / 1024).toFixed(2),
+                available: CONFIG.MAX_STORAGE_SIZE - totalSize,
+                availableMB: ((CONFIG.MAX_STORAGE_SIZE - totalSize) / 1024 / 1024).toFixed(2)
+            };
         },
 
         // 清除数据
         clear() {
             localStorage.removeItem(CONFIG.STORAGE_KEY);
             utils.showToast('已恢复默认数据！', 'success');
+        },
+
+        // 恢复上次数据
+        restoreLastBackup() {
+            try {
+                const backups = JSON.parse(localStorage.getItem(CONFIG.BACKUP_KEY) || '[]');
+                if (backups.length === 0) {
+                    utils.showToast('没有可恢复的备份数据！', 'warning');
+                    return false;
+                }
+
+                // 恢复最近的备份
+                const lastBackup = backups[0];
+                localStorage.setItem(CONFIG.STORAGE_KEY, lastBackup.data);
+                
+                // 移除已恢复的备份
+                backups.shift();
+                localStorage.setItem(CONFIG.BACKUP_KEY, JSON.stringify(backups));
+                
+                utils.showToast('已恢复上次数据！', 'success');
+                return true;
+            } catch (e) {
+                console.error('恢复失败:', e);
+                utils.showToast('恢复失败！', 'error');
+                return false;
+            }
         }
     };
 
@@ -238,7 +359,8 @@
             this.element.className = 'editor-context-menu';
             this.element.innerHTML = `
                 <div class="editor-context-menu-item" data-action="edit">📝 进入编辑模式</div>
-                <div class="editor-context-menu-item" data-action="reset">🔄 恢复默认数据</div>
+                <div class="editor-context-menu-item" data-action="reset">🔄 恢复上次数据</div>
+                <div class="editor-context-menu-item" data-action="cleanup">🗑️ 清理存储空间</div>
             `;
             document.body.appendChild(this.element);
         },
@@ -341,14 +463,39 @@
                 case 'reset':
                     this.resetData();
                     break;
+                case 'cleanup':
+                    this.cleanupStorage();
+                    break;
             }
         },
 
         async resetData() {
-            const confirmed = await utils.confirm('确定要恢复默认数据吗？这将清除所有自定义修改。');
+            const confirmed = await utils.confirm('确定要恢复上次保存的数据吗？');
             if (confirmed) {
-                dataManager.clear();
-                location.reload();
+                const success = dataManager.restoreLastBackup();
+                if (success) {
+                    location.reload();
+                }
+            }
+        },
+
+        async cleanupStorage() {
+            const storageInfo = dataManager.getStorageInfo();
+            const confirmed = await utils.confirm(
+                `当前存储使用: ${storageInfo.usedMB}MB\n\n确定要清理存储空间吗？\n这将删除所有备份和图片缓存。`
+            );
+            
+            if (confirmed) {
+                dataManager.cleanupOldBackups();
+                
+                // 清理所有备份
+                localStorage.removeItem(CONFIG.BACKUP_KEY);
+                
+                utils.showToast('存储空间已清理！', 'success');
+                
+                // 显示清理后的存储情况
+                const newInfo = dataManager.getStorageInfo();
+                console.log(`存储使用: ${newInfo.usedMB}MB`);
             }
         }
     };
@@ -654,9 +801,20 @@
 
         // 保存
         save() {
-            if (dataManager.save(state.currentData)) {
+            // 先尝试保存
+            const saveSuccess = dataManager.save(state.currentData);
+            
+            if (saveSuccess) {
+                // 保存成功，更新页面
                 pageRenderer.render(state.currentData);
                 this.hide();
+            } else {
+                // 保存失败，询问用户是否继续
+                utils.confirm('保存失败，是否放弃保存并关闭编辑器？').then((shouldClose) => {
+                    if (shouldClose) {
+                        this.hide();
+                    }
+                });
             }
         }
     };
