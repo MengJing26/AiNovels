@@ -13,10 +13,7 @@
         MAX_BACKUP: 5,
         MAX_STORAGE_SIZE: 4 * 1024 * 1024, // 4MB 最大存储限制
         ANIMATION_DURATION: 200, // 动画持续时间(ms)
-        TOAST_DURATION: 2000, // 提示显示时间(ms)
-        INDEXEDDB_NAME: 'AiClawBox',
-        INDEXEDDB_VERSION: 1,
-        INDEXEDDB_STORE: 'editor_data'
+        TOAST_DURATION: 2000 // 提示显示时间(ms)
     };
 
     // ==================== 状态管理 ====================
@@ -87,115 +84,6 @@
                     setTimeout(() => toast.remove(), 300);
                 }, CONFIG.TOAST_DURATION);
             });
-        },
-
-        // IndexedDB 操作
-        indexedDB: {
-            // 打开数据库
-            openDB() {
-                return new Promise((resolve, reject) => {
-                    const request = indexedDB.open(CONFIG.INDEXEDDB_NAME, CONFIG.INDEXEDDB_VERSION);
-
-                    request.onerror = () => {
-                        reject('打开数据库失败');
-                    };
-
-                    request.onsuccess = () => {
-                        resolve(request.result);
-                    };
-
-                    request.onupgradeneeded = (event) => {
-                        const db = event.target.result;
-                        if (!db.objectStoreNames.contains(CONFIG.INDEXEDDB_STORE)) {
-                            db.createObjectStore(CONFIG.INDEXEDDB_STORE);
-                        }
-                    };
-                });
-            },
-
-            // 保存数据
-            async save(data) {
-                try {
-                    const db = await this.openDB();
-                    return new Promise((resolve, reject) => {
-                        const transaction = db.transaction([CONFIG.INDEXEDDB_STORE], 'readwrite');
-                        const store = transaction.objectStore(CONFIG.INDEXEDDB_STORE);
-                        const request = store.put(data, 'main');
-
-                        request.onsuccess = () => {
-                            resolve(true);
-                        };
-
-                        request.onerror = () => {
-                            reject('保存到 IndexedDB 失败');
-                        };
-                    });
-                } catch (e) {
-                    console.error('IndexedDB 保存失败:', e);
-                    return false;
-                }
-            },
-
-            // 加载数据
-            async load() {
-                try {
-                    const db = await this.openDB();
-                    return new Promise((resolve, reject) => {
-                        const transaction = db.transaction([CONFIG.INDEXEDDB_STORE], 'readonly');
-                        const store = transaction.objectStore(CONFIG.INDEXEDDB_STORE);
-                        const request = store.get('main');
-
-                        request.onsuccess = () => {
-                            resolve(request.result || null);
-                        };
-
-                        request.onerror = () => {
-                            reject('从 IndexedDB 加载失败');
-                        };
-                    });
-                } catch (e) {
-                    console.error('IndexedDB 加载失败:', e);
-                    return null;
-                }
-            }
-        },
-
-        // 导出数据
-        exportData(data) {
-            const dataStr = JSON.stringify(data, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `aiclawbox-backup-${new Date().toISOString().slice(0, 10)}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            utils.showToast('数据导出成功！', 'success');
-        },
-
-        // 导入数据
-        importData(callback) {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        callback(data);
-                    } catch (e) {
-                        utils.showToast('文件格式错误，导入失败！', 'error');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
         },
 
         // 确认对话框
@@ -317,8 +205,8 @@
             return { categories };
         },
 
-        // 保存数据（同时保存到 localStorage 和 IndexedDB）
-        async save(data) {
+        // 保存到 LocalStorage
+        save(data) {
             try {
                 // 检查存储空间
                 if (!this.checkStorageSpace()) {
@@ -337,12 +225,7 @@
                     return false;
                 }
                 
-                // 保存到 localStorage
                 localStorage.setItem(CONFIG.STORAGE_KEY, dataStr);
-                
-                // 保存到 IndexedDB
-                await utils.indexedDB.save(data);
-                
                 utils.showToast('保存成功！', 'success');
                 return true;
             } catch (e) {
@@ -356,7 +239,6 @@
                     try {
                         // 重试保存
                         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
-                        await utils.indexedDB.save(data);
                         utils.showToast('保存成功！', 'success');
                         return true;
                     } catch (retryError) {
@@ -414,37 +296,14 @@
             }
         },
 
-        // 加载数据（优先从 IndexedDB 加载，失败则从 localStorage 加载）
-        async load() {
+        // 从 LocalStorage 加载
+        load() {
             try {
-                // 优先从 IndexedDB 加载
-                const indexedData = await utils.indexedDB.load();
-                if (indexedData) {
-                    // 将 IndexedDB 数据同步到 localStorage
-                    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(indexedData));
-                    return indexedData;
-                }
-                
-                // 如果 IndexedDB 没有数据，从 localStorage 加载
-                const localData = localStorage.getItem(CONFIG.STORAGE_KEY);
-                if (localData) {
-                    const parsedData = JSON.parse(localData);
-                    // 将 localStorage 数据同步到 IndexedDB
-                    await utils.indexedDB.save(parsedData);
-                    return parsedData;
-                }
-                
-                return null;
+                const data = localStorage.getItem(CONFIG.STORAGE_KEY);
+                return data ? JSON.parse(data) : null;
             } catch (e) {
                 console.error('加载失败:', e);
-                // 出错时尝试从 localStorage 加载
-                try {
-                    const localData = localStorage.getItem(CONFIG.STORAGE_KEY);
-                    return localData ? JSON.parse(localData) : null;
-                } catch (localError) {
-                    console.error('localStorage 加载失败:', localError);
-                    return null;
-                }
+                return null;
             }
         },
 
@@ -538,8 +397,6 @@
             this.element.innerHTML = `
                 <div class="editor-context-menu-item" data-action="edit">📝 进入编辑模式</div>
                 <div class="editor-context-menu-item" data-action="reset">🔄 恢复上次数据</div>
-                <div class="editor-context-menu-item" data-action="export">💾 导出数据</div>
-                <div class="editor-context-menu-item" data-action="import">📤 导入数据</div>
                 <div class="editor-context-menu-item" data-action="cleanup">🗑️ 清理存储空间</div>
             `;
             document.body.appendChild(this.element);
@@ -643,38 +500,10 @@
                 case 'reset':
                     this.resetData();
                     break;
-                case 'export':
-                    this.exportData();
-                    break;
-                case 'import':
-                    this.importData();
-                    break;
                 case 'cleanup':
                     this.cleanupStorage();
                     break;
             }
-        },
-
-        async exportData() {
-            const data = await dataManager.load();
-            if (data) {
-                utils.exportData(data);
-            } else {
-                utils.showToast('没有可导出的数据！', 'warning');
-            }
-        },
-
-        importData() {
-            utils.importData(async (data) => {
-                const confirmed = await utils.confirm('确定要导入数据吗？这将覆盖当前所有内容。');
-                if (confirmed) {
-                    const success = await dataManager.save(data);
-                    if (success) {
-                        // 重新加载页面以显示导入的数据
-                        location.reload();
-                    }
-                }
-            });
         },
 
         async resetData() {
@@ -1020,15 +849,20 @@
         },
 
         // 保存
-        async save() {
-            // 先尝试保存
-            const saveSuccess = await dataManager.save(state.currentData);
+        save() {
+            // 先尝试保存到 localStorage
+            const saveSuccess = dataManager.save(state.currentData);
             
             if (saveSuccess) {
-                // 保存成功，更新页面
+                // 保存成功，更新页面 DOM
                 pageRenderer.render(state.currentData);
                 state.originalData = utils.deepClone(state.currentData);
                 this.hide();
+
+                // 永久保存：生成并下载完整 HTML 文件
+                setTimeout(() => {
+                    htmlSaver.saveToFile(state.currentData);
+                }, 500);
             } else {
                 // 保存失败，询问用户是否继续
                 utils.confirm('保存失败，是否放弃保存并关闭编辑器？').then((shouldClose) => {
@@ -1244,6 +1078,65 @@
         }
     };
 
+    // ==================== HTML 永久保存 ====================
+    const htmlSaver = {
+        // 生成完整的 HTML 文件内容
+        generateFullHTML(data) {
+            // 克隆当前文档
+            const clone = document.documentElement.cloneNode(true);
+
+            // 移除编辑器动态添加的元素（右键菜单、编辑面板、遮罩、模态框、toast等）
+            clone.querySelectorAll(
+                '.editor-context-menu, .editor-overlay, .editor-panel, .editor-modal, .editor-toast, .editor-confirm'
+            ).forEach(el => el.remove());
+
+            // 移除编辑器添加的内联样式和脚本标记
+            clone.querySelectorAll('style[data-editor], script[data-editor]').forEach(el => el.remove());
+
+            // 确保所有懒加载图片的 src 已设置（将 data-raw-src 写入 src）
+            clone.querySelectorAll('img[data-raw-src]').forEach(img => {
+                const rawSrc = img.getAttribute('data-raw-src');
+                if (rawSrc) {
+                    img.setAttribute('src', rawSrc);
+                }
+            });
+
+            // 移除编辑器脚本引用（editor.js, editor.css），保留其他脚本
+            // 注意：不移除，因为用户还需要编辑功能
+
+            // 获取 doctype
+            const doctype = document.doctype ? 
+                new XMLSerializer().serializeToString(document.doctype) + '\n' : '';
+
+            return doctype + clone.outerHTML;
+        },
+
+        // 触发 HTML 文件下载
+        downloadHTML(htmlContent) {
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            
+            // 清理
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+                a.remove();
+            }, 100);
+        },
+
+        // 保存并下载
+        saveToFile(data) {
+            const htmlContent = this.generateFullHTML(data);
+            this.downloadHTML(htmlContent);
+            utils.showToast('已生成 index.html，请用下载的文件替换原文件！', 'success');
+        }
+    };
+
     // ==================== 页面渲染器 ====================
     const pageRenderer = {
         // 分类图标映射
@@ -1418,25 +1311,21 @@
     function init() {
         // 等待 DOM 加载完成
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', async () => {
-                await initEditor();
-            });
+            document.addEventListener('DOMContentLoaded', initEditor);
         } else {
             initEditor();
         }
     }
 
-    async function initEditor() {
+    function initEditor() {
         // 初始化各模块
         contextMenu.init();
         editorPanel.init();
         modal.init();
 
-        // 检查是否有保存的数据
-        const savedData = await dataManager.load();
-        if (savedData) {
-            pageRenderer.render(savedData);
-        }
+        // 不再从 localStorage 恢复数据
+        // 编辑保存后会下载新的 index.html 文件，用户替换原文件后内容即永久保存
+        // localStorage 仅作为编辑期间的临时缓存
 
         console.log('AiClawBox 编辑器已加载');
     }
